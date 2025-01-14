@@ -14,6 +14,8 @@ async function getAllPosts(req, res) {
       },
     });
 
+    console.log(res);
+
     res.status(200).json(posts);
   } catch (error) {
     console.error("Error fetching posts:", error.message);
