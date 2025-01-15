@@ -13,7 +13,9 @@ const passportConfig = async (passport) => {
         const admin = await prisma.admin.findUnique({ where: { username } });
 
         if (!admin) {
-          return done(null, false, { message: "Incorrect username" });
+          return done(null, false, {
+            message: "Incorrect username or password",
+          });
         }
 
         //hashing and salting
@@ -21,7 +23,9 @@ const passportConfig = async (passport) => {
 
         if (!match) {
           // passwords do not match!
-          return done(null, false, { message: "Incorrect password" });
+          return done(null, false, {
+            message: "Incorrect username or password",
+          });
         }
 
         return done(null, admin);
