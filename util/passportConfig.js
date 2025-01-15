@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 const passportConfig = async (passport) => {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
-      console.log("Authenticating:", username, password);
       try {
         const admin = await prisma.admin.findUnique({ where: { username } });
 
